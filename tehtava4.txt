@@ -1,0 +1,31 @@
+selain->palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+note over palvelin:
+Palvelin vastaanottaa datan ja tallentaa muistiinpanon
+end note
+palvelin-->selain: uudelleenohjauspyyntö /exampleapp/notes
+selain->palvelin: HTTP GET studies.cs.helsinki.fi/exampleapp/notes
+palvelin-->selain: HTML-koodi
+note over selain:
+selain alkaa parsimaan koodia ja koodi sisältää linkin
+tyylitiedostoon ja javascript-tiedostoon, tämä aiheuttaa
+get-pyynnöt palvelimelle (sivusto mahdollisesti
+renderöityy ensimmäistä kertaa)
+end note
+selain->palvelin: HTTP GET studies.cs.helsinki.fi/exampleapp/main.css
+palvelin-->selain: main.css
+selain->palvelin: HTTP GET studies.cs.helsinki.fi/exampleapp/main.js
+palvelin-->selain: main.js
+note over selain:
+selain suorittaa koodin ja koodi aiheuttaa
+get-pyynnön muistiinpanot sisältävään osoitteeseen
+end note
+selain->palvelin: HTTP GET studies.cs.helsinki.fi/exampleapp/data.json
+palvelin-->selain: [{ content: "Heippa", date: "2022-03-18" }, ...]
+note over selain:
+selaimen koodi lisää/renderöi datan sivustolle
+end note
+note over selain:
+lopuksi selain vielä pyytää faviconin
+end note
+selain->palvelin: HTTP GET studies.cs.helsinki.fi/favicon.ico
+palvelin-->selain: HTML-koodi (?)
